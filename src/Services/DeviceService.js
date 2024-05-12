@@ -1,30 +1,11 @@
 import express from "express";
-import { error, login, query, success } from "../Common/Misc/utils.js";
-import { headers } from "../Common/Misc/headers.js";
 import env from "../Common/Misc/ConfigProvider.mjs";
+import { getDevices } from "../Common/Misc/v1.js";
 export const deviceService = express.Router();
 
 deviceService.get("/all", async (req, res) => {
 	const { active } = req.query;
-	const user = await login(env.USERNAME, env.PASSWORD);
-	if (!user.success) return res.status(500).json(user);
-	const apiResponse = await query(
-		"Devices",
-		"get",
-		{ parameters: {} },
-		user.data.data.contextID,
-		user.data.sessionId
-	);
-
-	if (active === "true") {
-		const devices = apiResponse.data.status.filter(
-			(device) => device.Active === true
-		);
-		apiResponse.data.status = devices;
-	}
-
-	// Si la requete n'a pas été successful
+	const apiResponse = await getDevices(env.USERNAME, env.PASSWORD, active === "true");
 	if (!apiResponse.success) return res.status(500).json(apiResponse);
-
 	return res.json(apiResponse);
 });

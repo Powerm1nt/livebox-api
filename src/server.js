@@ -7,34 +7,9 @@ import env from './Common/Misc/ConfigProvider.mjs'
 import express from 'express'
 import errorHandler from './Common/Middlewares/ErrorHandler'
 import { name, version } from '../package.json'
-import { loginService } from './Services/LoginService'
 import { statusService } from './Services/StatusService'
-import { login } from './Common/Misc/utils'
 import { deviceService } from './Services/DeviceService'
 import { firewallService } from './Services/FirewallService'
-
-const APIS = [
-    {
-        url: "keys/login",
-        handler: (req, res) => {}
-    },
-    {
-        url: "keys/login",
-        handler: (req, res) => {}
-    },
-    {
-        url: "keys/login",
-        handler: (req, res) => {}
-    },
-    {
-        url: "keys/login",
-        handler: (req, res) => {}
-    },
-    {
-        url: "keys/login",
-        handler: (req, res) => {}
-    },
-];
 
 /*///////////////////////////////////////////////////////////////////////////////////////////
 // ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀           *     *        *         *     *   *    *
@@ -85,9 +60,6 @@ app.use(cookieParser())
 app.use(express.json())
 
 // Routeurs //
-
-// Auth Login
-app.use('/auth', loginService)
 
 // Livebox Status
 app.use('/status', statusService)
