@@ -10,6 +10,7 @@ import { name, version } from '../package.json'
 import { statusService } from './Services/StatusService'
 import { deviceService } from './Services/DeviceService'
 import { firewallService } from './Services/FirewallService'
+import { userService } from './Services/UserService'
 
 /*///////////////////////////////////////////////////////////////////////////////////////////
 // ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀           *     *        *         *     *   *    *
@@ -69,6 +70,9 @@ app.use('/devices', deviceService)
 
 // Firewall Service
 app.use('/firewall', firewallService)
+
+// Users Service
+app.use('/users', userService)
 
 ////////////////
 

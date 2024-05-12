@@ -27,7 +27,6 @@ export async function query(service, method = "get", data = { parameters: {} }, 
     })
         .then(async r => {
             let sessionId = ""
-            
             if (method === "createContext") {
                 sessionId = r.headers.getSetCookie()[2].split(';')[0].replace('475ec806/sessid=', '')
             }
@@ -48,8 +47,6 @@ export async function login (username, password) {
       password
     }
   });
-
-//   console.log(apiResponse.res.cookies)
 
   return { ...apiResponse };
 }

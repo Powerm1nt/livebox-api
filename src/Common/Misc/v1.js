@@ -61,6 +61,38 @@ export const addRule = async (username, password, body, commit) => {
     return apiResponse;
 }
 
+export const setIPV4FirewallLevel = async (username, password, level) => {
+    const user = await login(username, password);
+	if (!user.success) throw new Error("Failed to login");
+	const apiResponse = await query(
+		"Firewall",
+		"setFirewallLevel",
+		{ parameters: { level } },
+		user.data.data.contextID,
+		user.data.sessionId
+	);
+
+	// Si la requete n'a pas été successful
+	if (!apiResponse.success) throw new Error("Failed to set firewall level");
+    return apiResponse;
+}
+
+export const setIPV6FirewallLevel = async (username, password, level) => {
+    const user = await login(username, password);
+	if (!user.success) throw new Error("Failed to login");
+	const apiResponse = await query(
+		"Firewall",
+		"setFirewallIPv6Level",
+		{ parameters: { level } },
+		user.data.data.contextID,
+		user.data.sessionId
+	);
+
+	// Si la requete n'a pas été successful
+	if (!apiResponse.success) throw new Error("Failed to set firewall level");
+    return apiResponse;
+}
+
 export const getRules = async (username, password) => {
     const user = await login(username, password);
 	if (!user.success) throw new Error("Failed to login");
@@ -73,7 +105,7 @@ export const getRules = async (username, password) => {
     );
 
 	// Si la requete n'a pas été successful
-	if (!apiResponse.success) throw new Error("Failed to add rule");
+	if (!apiResponse.success) throw new Error("Failed to get rules");
     return apiResponse;
 }
 
@@ -96,22 +128,23 @@ export const getDevices = async (username, password, isActive) => {
 		apiResponse.data.status = devices;
 	}
 
+    if (!apiResponse.success) throw new Error("Failed to get devices");
     return apiResponse;
 }
 
 export const getLiveboxInfo = async (username, password) => {
     const user = await login(username, password);
-	if (!user.success) return res.status(500).json(user);
+	if (!user.success) throw new Error("Failed to login");
     const apiResponse = await query("DeviceInfo", "get", { parameters: {} }, user.data.data.contextID, user.data.sessionId);
 
     // Si la requete n'a pas été successful
-	if (!apiResponse.success) throw new Error("Failed to add rule");
+	if (!apiResponse.success) throw new Error("Failed to get livebox info");
     return apiResponse;
 }  
 
 export const rebootLivebox = async (username, password) => {
     const user = await login(username, password);
-	if (!user.success) return res.status(500).json(user);
+	if (!user.success) throw new Error("Failed to login");
     const apiResponse = await query(
         "NMC",
         "reboot",
@@ -120,13 +153,13 @@ export const rebootLivebox = async (username, password) => {
         user.data.sessionId
     );
     // Si la requete n'a pas été successful
-	if (!apiResponse.success) throw new Error("Failed to add rule");
+	if (!apiResponse.success) throw new Error("Failed to reboot livebox");
     return apiResponse;
 }  
 
 export const checkForUpgrades = async (username, password) => {
     const user = await login(username, password);
-	if (!user.success) return res.status(500).json(user);
+	if (!user.success) throw new Error("Failed to login");
     const apiResponse = await query(
         "NMC",
         "checkForUpgrades",
@@ -135,6 +168,81 @@ export const checkForUpgrades = async (username, password) => {
         user.data.sessionId
     );
     // Si la requete n'a pas été successful
-	if (!apiResponse.success) throw new Error("Failed to add rule");
+	if (!apiResponse.success) throw new Error("Failed to check for upgrades");
+    return apiResponse;
+}  
+
+export const getWANStatus = async (username, password) => {
+    const user = await login(username, password);
+	if (!user.success) throw new Error("Failed to login");
+    const apiResponse = await query(
+        "NMC",
+        "getWANStatus",
+        { parameters: {} },
+        user.data.data.contextID,
+        user.data.sessionId
+    );
+    // Si la requete n'a pas été successful
+	if (!apiResponse.success) throw new Error("Failed to get WAN status");
+    return apiResponse;
+}  
+
+export const getNMC = async (username, password) => {
+    const user = await login(username, password);
+	if (!user.success) throw new Error("Failed to login");
+    const apiResponse = await query(
+        "NMC",
+        "get",
+        { parameters: {} },
+        user.data.data.contextID,
+        user.data.sessionId
+    );
+    // Si la requete n'a pas été successful
+	if (!apiResponse.success) throw new Error("Failed to get NMC status");
+    return apiResponse;
+}
+
+export const getUsers = async (username, password) => {
+    const user = await login(username, password);
+	if (!user.success) throw new Error("Failed to login");
+    const apiResponse = await query(
+        "UserManagement",
+        "getUsers",
+        { parameters: {} },
+        user.data.data.contextID,
+        user.data.sessionId
+    );
+    // Si la requete n'a pas été successful
+	if (!apiResponse.success) throw new Error("Failed to get NMC status");
+    return apiResponse;
+}  
+
+export const startChPasswd = async (username, password) => {
+    const user = await login(username, password);
+	if (!user.success) throw new Error("Failed to login");
+    const apiResponse = await query(
+        "PasswordRecovery",
+        "start",
+        { parameters: {} },
+        user.data.data.contextID,
+        user.data.sessionId
+    );
+    // Si la requete n'a pas été successful
+	if (!apiResponse.success) throw new Error("Failed to get NMC status");
+    return apiResponse;
+}
+
+export const changePassword = async (username, password, newPassword) => {
+    const user = await login(username, password);
+	if (!user.success) throw new Error("Failed to login");
+    const apiResponse = await query(
+        "PasswordRecovery",
+        "setPassword",
+        { parameters: { password: newPassword } },
+        user.data.data.contextID,
+        user.data.sessionId
+    );
+    // Si la requete n'a pas été successful
+	if (!apiResponse.success) throw new Error("Failed to get NMC status");
     return apiResponse;
 }  
