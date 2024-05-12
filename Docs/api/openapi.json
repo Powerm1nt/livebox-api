@@ -1,0 +1,452 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Untitled API Document 3",
+      "description": "",
+      "version": "1.0.0",
+      "contact": {
+        "name": "Powerm1nt",
+        "email": "leonard.chabot@nuka.works"
+      }
+    },
+    "servers": [
+      {
+        "url": "https://echo.paw.cloud/",
+        "description": ""
+      },
+      {
+        "url": "http://localhost:4242/",
+        "description": ""
+      }
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "bruno",
+          "description": "",
+          "operationId": "81461533-7872-4680-a2f4-ec0345456ded",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/status/info/": {
+        "get": {
+          "summary": "Get Livebox Info",
+          "description": "",
+          "operationId": "71b95366-fe13-4af2-add4-ea3581d84491",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/status/reboot/": {
+        "get": {
+          "summary": "Reboot Livebox",
+          "description": "",
+          "operationId": "3d1a44ad-e88e-466c-ac7f-0d9ebca9f5bd",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/status/check-updates/": {
+        "get": {
+          "summary": "Check System Updates",
+          "description": "",
+          "operationId": "420dee5d-b3b4-4617-9aa1-ff71f86f94d5",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/status/wan-status/": {
+        "get": {
+          "summary": "Get WAN Status",
+          "description": "",
+          "operationId": "30f549af-e185-4dcc-aba2-6e2334b05566",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/status/nmc-status/": {
+        "get": {
+          "summary": "Get NMC Status",
+          "description": "",
+          "operationId": "801669f9-e659-4dec-a58d-5135f6be7e80",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/users/all/": {
+        "get": {
+          "summary": "Get System Users",
+          "description": "",
+          "operationId": "58828e1f-24e4-492c-9659-576464a55288",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/firewall/rules/": {
+        "get": {
+          "summary": "Get all firewall rules",
+          "description": "",
+          "operationId": "4399bcdb-43bb-494d-be85-67bbe0b143f6",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/firewall/add-rule/": {
+        "post": {
+          "summary": "Create rule firewall",
+          "description": "",
+          "operationId": "e2e5ab8b-dc96-41a5-ae60-f10f34e41744",
+          "parameters": [
+            {
+              "name": "commit",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "true",
+                "description": ""
+              }
+            },
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "schema": {
+                "type": "string",
+                "default": "text/plain; charset=utf-8",
+                "description": ""
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "{\n  \"id\": \"webui_test_port\",\n  \"origin\": \"webui\",\n  \"description\": \"TEST PORT\",\n  \"sourceInterface\": \"data\",\n  \"internalPort\": \"6433\",\n  \"externalPort\": \"6543\",\n  \"destinationIPAddress\": \"10.0.0.38\",\n  \"protocol\": \"6\",\n  \"enable\": true,\n  \"permanent\": false\n}"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/firewall/delete-rule/": {
+        "delete": {
+          "summary": "Delete rule firewall",
+          "description": "",
+          "operationId": "f12ddcf5-caa0-4896-b9b3-b72b0fab64f4",
+          "parameters": [
+            {
+              "name": "commit",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "true",
+                "description": ""
+              }
+            },
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "schema": {
+                "type": "string",
+                "default": "text/plain; charset=utf-8",
+                "description": ""
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "{\n  \"origin\": \"webui\",\n  \"id\": \"webui_test_port\"\n}"
+                }
+              }
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/firewall/commit/": {
+        "get": {
+          "summary": "Commit Firewall Rules",
+          "description": "",
+          "operationId": "1f6e7b75-e7c3-4019-8e70-3dd5fe2272f4",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/firewall/set-v4fwlvl/": {
+        "post": {
+          "summary": "Set IPV4 Firewall Level",
+          "description": "",
+          "operationId": "f69f088e-bca5-4d2a-a406-2d36636d2818",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "schema": {
+                "type": "string",
+                "default": "text/plain; charset=utf-8",
+                "description": ""
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "{\n  \"level\": \"Medium\"\n}"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/firewall/set-v6fwlvl/": {
+        "post": {
+          "summary": "Set IPV6 Firewall Level",
+          "description": "",
+          "operationId": "b89c96b5-1f2a-4ae9-bddd-c9df119161e1",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "schema": {
+                "type": "string",
+                "default": "text/plain; charset=utf-8",
+                "description": ""
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "{\n  \"level\": \"Medium\"\n}"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/firewall/ping-config/": {
+        "post": {
+          "summary": "Set Ping Config",
+          "description": "",
+          "operationId": "0060ac6d-a991-4ae2-a486-090051f2ee0d",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "schema": {
+                "type": "string",
+                "default": "text/plain; charset=utf-8",
+                "description": ""
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "{\n  \"enableIPv4\": true,\n  \"enableIPv6\": true\n}"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        },
+        "get": {
+          "summary": "Get Ping Config",
+          "description": "",
+          "operationId": "94582ca4-0705-4edd-92ab-625d107a8360",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      },
+      "/devices/all/": {
+        "get": {
+          "summary": "Get Devices Info",
+          "description": "",
+          "operationId": "a0cc8af3-b17c-451c-9df5-4796834a2bdf",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "text/plain": {}
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "security": []
+        }
+      }
+    },
+    "components": {}
+  }
