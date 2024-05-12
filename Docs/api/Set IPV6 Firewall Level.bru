@@ -1,0 +1,17 @@
+meta {
+  name: Set IPV6 Firewall Level
+  type: http
+  seq: 13
+}
+
+post {
+  url: http://localhost:4242/firewall/set-v6fwlvl
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "level": "Medium"
+  }
+}

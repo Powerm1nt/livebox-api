@@ -1,0 +1,18 @@
+meta {
+  name: Set Ping Config
+  type: http
+  seq: 14
+}
+
+post {
+  url: http://localhost:4242/firewall/ping-config
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "enableIPv4": true,
+    "enableIPv6": true
+  }
+}

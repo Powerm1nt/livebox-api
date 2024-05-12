@@ -1,0 +1,30 @@
+meta {
+  name: Create rule firewall
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://localhost:4242/firewall/add-rule?commit=true
+  body: json
+  auth: none
+}
+
+query {
+  commit: true
+}
+
+body:json {
+  {
+    "id": "webui_test_port",
+    "origin": "webui",
+    "description": "TEST PORT",
+    "sourceInterface": "data",
+    "internalPort": "6433",
+    "externalPort": "6543",
+    "destinationIPAddress": "10.0.0.38",
+    "protocol": "6",
+    "enable": true,
+    "permanent": false
+  }
+}

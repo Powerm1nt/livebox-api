@@ -1,0 +1,22 @@
+meta {
+  name: Delete rule firewall
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://localhost:4242/firewall/delete-rule?commit=true
+  body: json
+  auth: none
+}
+
+query {
+  commit: true
+}
+
+body:json {
+  {
+    "origin": "webui",
+    "id": "webui_test_port"
+  }
+}

@@ -1,0 +1,17 @@
+meta {
+  name: Set IPV4 Firewall Level
+  type: http
+  seq: 12
+}
+
+post {
+  url: http://localhost:4242/firewall/set-v4fwlvl
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "level": "Medium"
+  }
+}
