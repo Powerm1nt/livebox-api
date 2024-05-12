@@ -9,6 +9,49 @@ import errorHandler from './Common/Middlewares/ErrorHandler'
 import { name, version } from '../package.json'
 import { loginService } from './Services/LoginService'
 import { statusService } from './Services/StatusService'
+import { login } from './Common/Misc/utils'
+import { deviceService } from './Services/DeviceService'
+
+const APIS = [
+    {
+        url: "keys/login",
+        handler: (req, res) => {}
+    },
+    {
+        url: "keys/login",
+        handler: (req, res) => {}
+    },
+    {
+        url: "keys/login",
+        handler: (req, res) => {}
+    },
+    {
+        url: "keys/login",
+        handler: (req, res) => {}
+    },
+    {
+        url: "keys/login",
+        handler: (req, res) => {}
+    },
+];
+
+/*///////////////////////////////////////////////////////////////////////////////////////////
+// ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀           *     *        *         *     *   *    *
+// ⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀         *      *             *       *            *
+// ⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆         *              *          *        *           *
+// ⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆       *       *       *                        *
+// ⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆             * *         *               *
+// ⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠸⣼⡿
+// ⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉    ,-------------------------------------------.    * 
+// ⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇    /       *                 *       *           \      *
+// ⠀⠉⠈⠉⠀⠀⢦⡈⢻⣽⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇   <   Put a star on GitLab, else imma eat ya!    |   *
+// ⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⣿⣷⣶⣮⣭⣽⣿⣿⣷⣜⣿⣿⣿⡇    \       *          *            *             /
+// ⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿      `-------------------------------------------'
+// ⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇
+// ⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃    *        *          *       *        *        *     *
+// ⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁     *     *     *     *           *      *          *
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉     *         * *         *    *     *                 *
+/*//////////////////////////////////////////////////////////////////////////////////////////
 
 // Setup Logging
 const log = logger.scope('LiveboxAPI')
@@ -48,6 +91,9 @@ app.use('/auth', loginService)
 // Livebox Status
 app.use('/status', statusService)
 
+// Device Service
+app.use('/devices', deviceService)
+
 ////////////////
 
 // BodyParser::Json
@@ -57,7 +103,6 @@ app.use(bodyParser.json())
 app.use(errorHandler)
 
 // Start the Server
-
-app.listen(port, () => {
+app.listen(port, async () => {
     log.info(`Listening on port ${port}`)
 })

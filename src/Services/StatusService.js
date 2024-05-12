@@ -4,9 +4,11 @@ import { headers } from "../Common/Misc/headers.js";
 
 export const statusService = express.Router();
 
-statusService.get("/", async (req, res) => {
-	const apiResponse = await query("DeviceInfo", "get", { parameters: {} });
+statusService.get("/", async (req, res, next) => {
+    const apiResponse = await query("DeviceInfo", "get", { parameters: {} });
 
+	// Si la requete n'a pas été successful
 	if (!apiResponse.success) return res.status(500).json(apiResponse);
+
 	return res.json(apiResponse);
 });
