@@ -4,7 +4,7 @@ import { headers } from "../Common/Misc/headers.js";
 import env from "../Common/Misc/ConfigProvider.mjs";
 export const deviceService = express.Router();
 
-deviceService.get("/", async (req, res) => {
+deviceService.get("/all", async (req, res) => {
 	const { active } = req.query;
 	const user = await login(env.USERNAME, env.PASSWORD);
 	if (!user.success) return res.status(500).json(user);
