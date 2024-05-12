@@ -1,6 +1,5 @@
 import express from "express";
-import { error, login, query, success } from "../Common/Misc/utils.js";
-import { headers } from "../Common/Misc/headers.js";
+import { error, login, query } from "../Common/Misc/utils.js";
 import env from "../Common/Misc/ConfigProvider.mjs";
 export const firewallService = express.Router();
 
