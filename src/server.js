@@ -7,6 +7,8 @@ import env from './Common/Misc/ConfigProvider.mjs'
 import express from 'express'
 import errorHandler from './Common/Middlewares/ErrorHandler'
 import { name, version } from '../package.json'
+import { loginService } from './Services/LoginService'
+import { statusService } from './Services/StatusService'
 
 // Setup Logging
 const log = logger.scope('LiveboxAPI')
@@ -40,6 +42,11 @@ app.use(express.json())
 
 // Routeurs //
 
+// Auth Login
+app.use('/auth', loginService)
+
+// Livebox Status
+app.use('/status', statusService)
 
 ////////////////
 
