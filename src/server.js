@@ -38,6 +38,17 @@ const app = express()
 const port = env.APP_API_PORT
 app.disable('x-powered-by')
 
+// Auth Middleware
+app.use((req, res, next) => {
+    if (req.headers.authorization !== env.APP_API_KEY) {
+        res.status(401).json({
+            error: 'Unauthorized',
+        })
+    } else {
+        next()
+    }
+})
+
 app.use((req, res, next) => {
     res.header('Server', `${name} ${version}`)
     res.header('Access-Control-Allow-Headers', '*')
