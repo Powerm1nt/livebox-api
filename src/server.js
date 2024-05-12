@@ -11,6 +11,7 @@ import { loginService } from './Services/LoginService'
 import { statusService } from './Services/StatusService'
 import { login } from './Common/Misc/utils'
 import { deviceService } from './Services/DeviceService'
+import { firewallService } from './Services/FirewallService'
 
 const APIS = [
     {
@@ -93,6 +94,9 @@ app.use('/status', statusService)
 
 // Device Service
 app.use('/devices', deviceService)
+
+// Firewall Service
+app.use('/firewall', firewallService)
 
 ////////////////
 
