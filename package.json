@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node tools/RegiDevelServer.mjs",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "build": "esbuild src/server.js --bundle --minify --platform=node --outfile=dist/server.js"
   },
   "author": "Powerm1nt <leonard.chabot@nuka.works>",
   "license": "MIT",
