@@ -29,6 +29,9 @@ app.use((req, res, next) => {
     next()
 })
 
+// CORS
+app.use(cors())
+
 // Cookie-parser
 app.use(cookieParser())
 
