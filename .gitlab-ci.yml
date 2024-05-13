@@ -14,7 +14,7 @@ build:
 deploy:
   stage: deploy
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client sshpass -y )'
     - mkdir -p ~/.ssh
     - echo "StrictHostKeyChecking no" > ~/.ssh/config
   image: debian:latest
