@@ -1,0 +1,34 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_IMAGE_NAME: livebox-api:${CI_COMMIT_REF_SLUG}
+
+build:
+  stage: build
+  image: node:20-alpine
+  script:
+    - npm install && npm run build
+
+deploy:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo "StrictHostKeyChecking no" > ~/.ssh/config
+  image: alpine:latest
+  script:
+    - ssh $DEPLOY_USER@$DEPLOY_SERVER "
+        mkdir -p repo && 
+        cd repo && 
+        git clone $CI_REPOSITORY_URL && 
+        cd livebox-api && 
+        git pull origin $CI_COMMIT_REF_SLUG && 
+        git checkout $CI_COMMIT_REF_SLUG && 
+        docker build -t $DOCKER_IMAGE_NAME . && 
+        docker run -d -p 4242:4242 $DOCKER_IMAGE_NAME && 
+        cd .. && 
+        rm -rf livebox-api"

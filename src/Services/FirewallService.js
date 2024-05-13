@@ -15,6 +15,7 @@ export const firewallService = express.Router();
 
 firewallService.get("/rules", async (req, res) => {
 	const apiResponse = await getRules(env.USERNAME, env.PASSWORD);
+	if (!apiResponse.success) return res.status(500).json(apiResponse);
 	return res.json(apiResponse);
 });
 
