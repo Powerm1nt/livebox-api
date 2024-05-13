@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  DOCKER_IMAGE_NAME: livebox-api:${CI_COMMIT_REF_SLUG}
+  DOCKER_IMAGE_NAME: "livebox-api:${CI_COMMIT_REF_SLUG}"
 
 build:
   stage: build
@@ -17,24 +17,23 @@ deploy:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client sshpass -y )'
     - mkdir -p ~/.ssh
     - echo "StrictHostKeyChecking no" > ~/.ssh/config
-    
-}' > env.json
   image: debian:latest
   script:
-    - sshpass -p $SSH_PASSWORD ssh $DEPLOY_USER@$DEPLOY_SERVER "
-        mkdir -p repo && 
-        cd repo && 
-        git clone $CI_REPOSITORY_URL && 
-        cd livebox-api && 
-        git pull origin $CI_COMMIT_REF_SLUG && 
-        git checkout $CI_COMMIT_REF_SLUG && 
-        echo '{' > ./env.json
-              echo '"LIVEBOX_URL": "$LIVEBOX_URL",' >> env.json
-              echo '"USERNAME": "$USERNAME",' >> env.json
-              echo '"PASSWORD": "$PASSWORD",' >> env.json
-              echo '"APP_API_KEY": "$APP_API_KEY"' >> env.json
-        echo '}' >> ./env.json &&
-        docker build -t $DOCKER_IMAGE_NAME . && 
-        docker run -d -p 4242:4242 $DOCKER_IMAGE_NAME && 
-        cd .. && 
-        rm -rf livebox-api"
+    - >
+      sshpass -p $SSH_PASSWORD ssh $DEPLOY_USER@$DEPLOY_SERVER "
+      mkdir -p repo && 
+      cd repo && 
+      git clone $CI_REPOSITORY_URL && 
+      cd livebox-api && 
+      git pull origin $CI_COMMIT_REF_SLUG && 
+      git checkout $CI_COMMIT_REF_SLUG && 
+      echo '{' > ./env.json
+      echo '\"LIVEBOX_URL\": \"$LIVEBOX_URL\",' >> env.json
+      echo '\"USERNAME\": \"$USERNAME\",' >> env.json
+      echo '\"PASSWORD\": \"$PASSWORD\",' >> env.json
+      echo '\"APP_API_KEY\": \"$APP_API_KEY\"' >> env.json
+      echo '}' >> ./env.json &&
+      docker build -t $DOCKER_IMAGE_NAME . && 
+      docker run -d -p 4242:4242 $DOCKER_IMAGE_NAME && 
+      cd .. && 
+      rm -rf livebox-api"
