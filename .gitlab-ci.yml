@@ -22,7 +22,8 @@ deploy:
     - >
       sshpass -p $SSH_PASSWORD ssh $DEPLOY_USER@$DEPLOY_SERVER "
       mkdir -p repo && 
-      cd repo && 
+      cd repo &&
+      rm -rf livebox-api && 
       git clone $CI_REPOSITORY_URL && 
       cd livebox-api && 
       git pull origin $CI_COMMIT_REF_SLUG && 
