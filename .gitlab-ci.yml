@@ -34,6 +34,8 @@ deploy:
       echo '\"APP_API_KEY\": \"$APP_API_KEY\"' >> env.json &&
       echo '}' >> ./env.json &&
       docker build -t $DOCKER_IMAGE_NAME . && 
-      docker run -d -p 4242:4242 $DOCKER_IMAGE_NAME &&
+      docker stop livebox-api &&
+      docker rm livebox-api &&
+      docker run -d --name livebox-api --restart=always -p 4242:4242 $DOCKER_IMAGE_NAME &&
       cd .. && 
       rm -rf livebox-api"
