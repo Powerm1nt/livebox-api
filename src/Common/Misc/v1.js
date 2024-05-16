@@ -202,3 +202,14 @@ export const getPingConfig = async (username, password) => {
 	if (!apiResponse.success) return new Error("Failed to get NMC status");
 	return apiResponse;
 };
+
+export const getSpeedTest = async (username, password) => {
+	const user = await login(username, password);
+	if (!user.success) return new Error("Failed to login");
+	const apiResponse = await query("SpeedTest:getWANResults", user, {
+		parameters: {},
+	});
+
+	if (!apiResponse.success) return new Error("Failed to get NMC status");
+	return apiResponse;
+};
