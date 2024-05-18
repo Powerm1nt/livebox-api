@@ -1,6 +1,6 @@
 {
   "name": "@nwrks/livebox-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "type": "module",
   "engines": {
@@ -11,9 +11,13 @@
     "src",
     "index.js"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://git.nuka.works/nukaworks/livebox-api.git"
+  },
   "scripts": {
     "dev": "node tools/RegiDevelServer.mjs",
-    "start": "node src/server.js",
+    "start": "npm run build && node dist/server.js",
     "build": "esbuild src/server.js --bundle --minify --platform=node --outfile=dist/server.js"
   },
   "author": "Powerm1nt <leonard.chabot@nuka.works>",
