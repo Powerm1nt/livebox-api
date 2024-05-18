@@ -2,6 +2,15 @@
   "name": "livebox-api",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "dist",
+    "src",
+    "index.js"
+  ],
   "scripts": {
     "dev": "node tools/RegiDevelServer.mjs",
     "start": "node src/server.js",
