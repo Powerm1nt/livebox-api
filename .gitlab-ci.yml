@@ -8,13 +8,13 @@ variables:
 build:
   stage: build
   image: node:20-alpine
-  only: main
+  only: ["main"]
   script:
     - npm install && npm run build
 
 deploy:
   stage: deploy
-  only: main
+  only: ["main"]
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client sshpass -y )'
     - mkdir -p ~/.ssh
