@@ -10,7 +10,7 @@ const popularDirs = ['./', '../', '../../', '../../../', 'dist/', 'public/']
 
 const defaultConfig = {
   APP_HOST: os.hostname(),
-  APP_API_PORT: 4242,
+  APP_API_PORT: 4244,
   APP_DEV: false,
   APP_LOG_LEVEL: 'debug',
 }
